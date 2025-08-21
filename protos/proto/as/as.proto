@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "almaz.as.v1;asv1";
+
+service Auth {
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+}
+
+message RegisterRequest {
+    string email = 1; // Email пользователя для регистрации
+    string password = 2; // Пароль пользователя
+}
+
+message RegisterResponse {
+    int64 user_id = 1; // ID зарегистрированного пользователя
+}
+
+message LoginRequest {
+    string email = 1;  // Email для входа
+    string password = 2; // пароль для входа
+    int32 app_id = 3; // id приложения для входа
+}
+
+message LoginResponse {
+    string token = 1; // Auth token пользователя 
+}
+
+message IsAdminRequest {
+    int64 user_ = 1; // ID пользователя 
+}
+
+message IsAdminResponse {
+    bool is_admin = 1; // админ или нет
+}

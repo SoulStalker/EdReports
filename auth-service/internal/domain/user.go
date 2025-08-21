@@ -34,3 +34,21 @@ func (u *User) BeforeUpdate(tx *gorm.DB) error {
 	u.UpdatedAt = time.Now()
 	return nil
 }
+
+type UserRepository interface {
+	Create(user *User) error
+	GetByEmail(email string) (*User, error)
+	GetByID(id string) (*User, error)
+	AssignRole(userID, roleID string) error
+}
+
+type PasswordHasher interface {
+	Hash(password string) (string, error)
+	Compare(hash, password string) bool
+}
+
+type TokenProvider interface {
+	GenerateAccessToken(user *User) (string, error)
+	GenerateRefreshToken(user *User) (string, error)
+	ValidateToken(token string) (*User, error)
+}
