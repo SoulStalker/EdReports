@@ -52,7 +52,7 @@ type Log struct {
 }
 
 // Printf prints out formatted string into a log
-func (l *Log) Printf(format string, v ...interface{}) {
+func (l *Log) Printf(format string, v ...any) {
 	fmt.Printf(format, v...)
 }
 
