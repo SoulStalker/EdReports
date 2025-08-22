@@ -4,8 +4,8 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/SoulStalker/edreports/auth-service/internal/config"
-	"github.com/SoulStalker/edreports/auth-service/internal/lib/logger/handlers/slogpretty"
+	"github.com/SoulStalker/EdReports/auth-service/internal/config"
+	"github.com/SoulStalker/EdReports/auth-service/internal/lib/logger/handlers/slogpretty"
 )
 
 const (

@@ -1,4 +1,4 @@
-module github.com/SoulStalker/edreports/auth-service
+module github.com/SoulStalker/EdReports/auth-service
 
 go 1.23.6
 
