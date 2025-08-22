@@ -1,7 +1,7 @@
 package auth
 
-import "github.com/SoulStalker/EdReports/protos"
+import asv1 "github.com/SoulStalker/EdReports/protos/gen/go/as"
 
 type serverAPI struct {
-	// TODO: выложить в гит прото
+	asv1.UnimplementedAuthServer
 }
