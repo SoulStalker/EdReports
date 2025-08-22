@@ -1,7 +1,7 @@
 package infra
 
 import (
-	"github.com/SoulStalker/edreports-auth-servive/internal/domain"
+	"github.com/SoulStalker/edreports/auth-service/internal/domain"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

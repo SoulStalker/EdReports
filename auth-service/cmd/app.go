@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/SoulStalker/edreports-auth-servive/internal/infra"
+	"github.com/SoulStalker/edreports/auth-service/internal/infra"
 )
 
 func main() {

@@ -1,3 +1,3 @@
-module github.com/SoulStalker/edreport-protos
+module github.com/SoulStalker/edreports/protos
 
 go 1.23.6
