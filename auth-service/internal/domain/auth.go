@@ -34,7 +34,7 @@ type RefreshToken struct {
 	RevokedReason string     `gorm:"type:text"`          // причина отзыва
 
 	// Связи
-	User User `gorm:"foreignKey:UserID;constraint:OnDelete:CASCADE"`
+	// User User `gorm:"foreignKey:UserID;constraint:OnDelete:CASCADE"`
 }
 
 func (RefreshToken) TableName() string {

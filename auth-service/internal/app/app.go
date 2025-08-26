@@ -5,6 +5,8 @@ import (
 	"time"
 
 	grpcapp "github.com/SoulStalker/EdReports/auth-service/internal/app/grpc"
+	"github.com/SoulStalker/EdReports/auth-service/internal/services/auth"
+	"github.com/SoulStalker/EdReports/auth-service/internal/services/storage/sqlite"
 )
 
 type App struct {
@@ -12,7 +14,13 @@ type App struct {
 }
 
 func New(log *slog.Logger, grpcPort int, storagePath string, tokenTTL time.Duration) *App {
-	grpcApp := grpcapp.New(log, grpcPort)
+	storage, err := sqlite.New(storagePath)
+	if err != nil {
+		panic(err)
+	}
+
+	authService := auth.New(log, storage, storage, storage, tokenTTL)
+	grpcApp := grpcapp.New(log, authService, grpcPort)
 
 	return &App{
 		GRPCSrv: grpcApp,

@@ -16,13 +16,13 @@ func InitDB(cfg DBConfig) (*gorm.DB, error) {
 		return nil, err
 	}
 	err = db.AutoMigrate(
-		&domain.User{},
-		&domain.Role{},
-		&domain.Permission{},
-		&domain.RolePermission{},
-		&domain.UserRole{},
-		&domain.UserStore{},
-		&domain.UserCategory{},
+		// &domain.User{},
+		// &domain.Role{},
+		// &domain.Permission{},
+		// &domain.RolePermission{},
+		// &domain.UserRole{},
+		// &domain.UserStore{},
+		// &domain.UserCategory{},
 		&domain.AuthKey{},
 		&domain.RefreshToken{},
 	)
