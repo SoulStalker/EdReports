@@ -2,7 +2,10 @@ package auth
 
 import (
 	"context"
+	"errors"
 
+	"github.com/SoulStalker/EdReports/auth-service/internal/services/auth"
+	"github.com/SoulStalker/EdReports/auth-service/internal/services/storage"
 	asv1 "github.com/SoulStalker/EdReports/protos/gen/go/as"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -31,6 +34,9 @@ func (s *serverAPI) Login(ctx context.Context, req *asv1.LoginRequest) (*asv1.Lo
 
 	token, err := s.auth.Login(ctx, req.GetEmail(), req.GetPassword(), int(req.GetAppId()))
 	if err != nil {
+		if errors.Is(err, auth.ErrInvalidCredentials) {
+			return nil, status.Error(codes.InvalidArgument, "invalid credentials")
+		}
 		return nil, status.Error(codes.Internal, "internal error")
 	}
 
@@ -45,6 +51,10 @@ func (s *serverAPI) Register(ctx context.Context, req *asv1.RegisterRequest) (*a
 	}
 	userID, err := s.auth.RegisterNewUser(ctx, req.Email, req.Password)
 	if err != nil {
+		if errors.Is(err, storage.ErrUserExist) {
+			return nil, status.Error(codes.AlreadyExists, "user already exist")
+		}
+		
 		return nil, status.Error(codes.Internal, "internal error")
 	}
 	return &asv1.RegisterResponse{UserId: userID}, nil
@@ -57,6 +67,10 @@ func (s *serverAPI) IsAdmin(ctx context.Context, req *asv1.IsAdminRequest) (*asv
 
 	isAdmin, err := s.auth.IsAdmin(ctx, req.GetUser_())
 	if err != nil {
+		if errors.Is(err, storage.ErrUserNotFound) {
+			return nil, status.Error(codes.NotFound, "user not found")
+		}
+
 		return nil, status.Error(codes.Internal, "internal error")
 	}
 
