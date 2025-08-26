@@ -18,9 +18,9 @@ type User struct {
 	// RefreshTokens []RefreshToken `gorm:"constraint:OnDelete:CASCADE"`
 }
 
-func (User) TableName() string {
-	return "users"
-}
+// func (User) TableName() string {
+// 	return "users"
+// }
 
 // Хук для обновления updated_at
 // func (u *User) BeforeUpdate(tx *gorm.DB) error {
@@ -28,20 +28,20 @@ func (User) TableName() string {
 // 	return nil
 // }
 
-type UserRepository interface {
-	Create(user *User) error
-	GetByEmail(email string) (*User, error)
-	GetByID(id string) (*User, error)
-	AssignRole(userID, roleID string) error
-}
+// type UserRepository interface {
+// 	Create(user *User) error
+// 	GetByEmail(email string) (*User, error)
+// 	GetByID(id string) (*User, error)
+// 	AssignRole(userID, roleID string) error
+// }
 
-type PasswordHasher interface {
-	Hash(password string) (string, error)
-	Compare(hash, password string) bool
-}
+// type PasswordHasher interface {
+// 	Hash(password string) (string, error)
+// 	Compare(hash, password string) bool
+// }
 
-type TokenProvider interface {
-	GenerateAccessToken(user *User) (string, error)
-	GenerateRefreshToken(user *User) (string, error)
-	ValidateToken(token string) (*User, error)
-}
+// type TokenProvider interface {
+// 	GenerateAccessToken(user *User) (string, error)
+// 	GenerateRefreshToken(user *User) (string, error)
+// 	ValidateToken(token string) (*User, error)
+// }
