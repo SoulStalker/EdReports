@@ -39,6 +39,7 @@ var (
 	ErrInvalidCredentials = errors.New("invalid credentials")
 	ErrInvalidAppId       = errors.New("invalid app id")
 	ErrUserExist          = errors.New("user exists")
+	ErrUserNotFound       = errors.New("user not found")
 )
 
 func New(
